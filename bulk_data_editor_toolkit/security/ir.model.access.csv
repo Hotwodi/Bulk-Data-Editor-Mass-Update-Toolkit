@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bde_update_job_user,bde.update.job.user,model_bde_update_job,base.group_user,1,1,1,1
+access_bde_update_line_user,bde.update.line.user,model_bde_update_line,base.group_user,1,1,1,1
+access_bde_update_template_user,bde.update.template.user,model_bde_update_template,base.group_user,1,1,1,1
+access_bde_undo_log_user,bde.undo.log.user,model_bde_undo_log,base.group_user,1,1,1,1

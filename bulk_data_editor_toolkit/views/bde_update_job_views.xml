@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_bde_update_job_tree" model="ir.ui.view">
+        <field name="name">bde.update.job.tree</field>
+        <field name="model">bde.update.job</field>
+        <field name="arch" type="xml">
+            <tree string="Update Jobs" decoration-info="state=='draft'" decoration-success="state=='done'" decoration-danger="state=='failed'" decoration-warning="state=='running'">
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="update_mode"/>
+                <field name="state" widget="badge"/>
+                <field name="records_affected"/>
+                <field name="created_by"/>
+                <field name="created_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_bde_update_job_form" model="ir.ui.view">
+        <field name="name">bde.update.job.form</field>
+        <field name="model">bde.update.job</field>
+        <field name="arch" type="xml">
+            <form string="Update Job">
+                <header>
+                    <button name="action_run" type="object" string="Run Job" class="oe_highlight" invisible="state not in ['draft','failed']"/>
+                    <button name="action_undo" type="object" string="Undo" invisible="state != 'done'"/>
+                    <button name="action_reset_draft" type="object" string="Reset to Draft" invisible="state not in ['done','failed']"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,running,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Job Name"/>
+                        <h1><field name="name" placeholder="e.g. Update partner categories"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="model_name" placeholder="e.g. res.partner"/>
+                            <field name="update_mode"/>
+                            <field name="records_affected"/>
+                        </group>
+                        <group>
+                            <field name="created_by"/>
+                            <field name="created_date"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Domain Filter">
+                            <field name="domain_filter" placeholder='[["active","=",true]]'/>
+                        </page>
+                        <page string="Update Lines">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="field_name"/>
+                                    <field name="operation"/>
+                                    <field name="value_type"/>
+                                    <field name="value"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Undo Logs">
+                            <field name="undo_log_ids" readonly="1">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="model_name"/>
+                                    <field name="record_id"/>
+                                    <field name="can_restore"/>
+                                    <field name="undone_date"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Notes">
+                            <field name="note"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_bde_update_job" model="ir.actions.act_window">
+        <field name="name">Update Jobs</field>
+        <field name="res_model">bde.update.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first bulk update job
+            </p>
+            <p>
+                Define a target model, a domain filter and update lines to
+                perform bulk edits with full undo support.
+            </p>
+        </field>
+    </record>
+</odoo>

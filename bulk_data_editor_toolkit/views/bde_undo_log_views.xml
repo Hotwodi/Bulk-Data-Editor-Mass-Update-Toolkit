@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_bde_undo_log_tree" model="ir.ui.view">
+        <field name="name">bde.undo.log.tree</field>
+        <field name="model">bde.undo.log</field>
+        <field name="arch" type="xml">
+            <tree string="Undo Logs" decoration-success="not can_restore" decoration-warning="can_restore">
+                <field name="name"/>
+                <field name="model_name"/>
+                <field name="record_id"/>
+                <field name="can_restore" widget="boolean_toggle"/>
+                <field name="undone_by"/>
+                <field name="undone_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_bde_undo_log_form" model="ir.ui.view">
+        <field name="name">bde.undo.log.form</field>
+        <field name="model">bde.undo.log</field>
+        <field name="arch" type="xml">
+            <form string="Undo Log">
+                <header>
+                    <button name="action_restore" type="object" string="Restore" class="oe_highlight" invisible="not can_restore"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" string="Name"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="job_id"/>
+                            <field name="model_name"/>
+                            <field name="record_id"/>
+                        </group>
+                        <group>
+                            <field name="can_restore" readonly="1"/>
+                            <field name="undone_by" readonly="1"/>
+                            <field name="undone_date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Record Data (JSON)">
+                        <field name="record_data" nolabel="1" widget="ace"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_bde_undo_log" model="ir.actions.act_window">
+        <field name="name">Undo Log</field>
+        <field name="res_model">bde.undo.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No undo logs yet
+            </p>
+            <p>
+                Undo logs are created automatically when a bulk update job
+                runs. Restore records to their pre-update state from here.
+            </p>
+        </field>
+    </record>
+</odoo>

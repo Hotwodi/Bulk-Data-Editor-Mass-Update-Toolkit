@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Root Menu -->
+    <menuitem id="menu_bde_root"
+              name="Bulk Data Editor"
+              sequence="90"
+              web_icon="bulk_data_editor_toolkit,static/description/icon.png"/>
+
+    <!-- Submenus -->
+    <menuitem id="menu_bde_update_job"
+              name="Update Jobs"
+              parent="menu_bde_root"
+              action="action_bde_update_job"
+              sequence="10"/>
+
+    <menuitem id="menu_bde_update_template"
+              name="Update Templates"
+              parent="menu_bde_root"
+              action="action_bde_update_template"
+              sequence="20"/>
+
+    <menuitem id="menu_bde_undo_log"
+              name="Undo Log"
+              parent="menu_bde_root"
+              action="action_bde_undo_log"
+              sequence="30"/>
+</odoo>
