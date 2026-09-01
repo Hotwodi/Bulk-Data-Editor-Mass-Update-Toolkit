@@ -2,6 +2,7 @@
 {
     'name': 'Bulk Data Editor & Mass Update Toolkit',
     'version': '18.0.1.0.0',
+    'images': ['static/description/cover.png'],
     'category': 'Productivity/AI',
     'summary': 'Bulk update, mass edit, and undo changes on any Odoo model safely.',
     'description': """
