@@ -5,14 +5,14 @@
         <field name="name">bde.update.line.tree</field>
         <field name="model">bde.update.line</field>
         <field name="arch" type="xml">
-            <tree string="Update Lines">
+            <list string="Update Lines">
                 <field name="field_name"/>
                 <field name="operation"/>
                 <field name="value_type"/>
                 <field name="value"/>
                 <field name="job_id"/>
                 <field name="template_id"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -46,6 +46,6 @@
     <record id="action_bde_update_line" model="ir.actions.act_window">
         <field name="name">Update Lines</field>
         <field name="res_model">bde.update.line</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 </odoo>

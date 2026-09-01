@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 class BdeUpdateJob(models.Model):
     _name = 'bde.update.job'
     _description = 'Bulk Update Job'
-    _inherit = ['mail.thread']
+    _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'created_date desc'
 
     name = fields.Char(string='Job Name', required=True, tracking=True)
